@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+$fonte-principal: 'Roboto', sans-serif;
+$tamanho-fonte-titulo: 50px;
+$fonte-negrito: 500;
+$fonte-normal: 300;
+$cor-principal: #000000;
+$tamanho-fonte-secundaria: 30px;
+$tamanho-fonte-terciaria: 20px;
+$radius-borda: 10px;
+$border: 1px solid $cor-principal;
+$cor-branca: #FFFF;
+$margin-embaixo: 30px;
+$cor-fundo-pagina: #CFCFCF;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: $cor-fundo-pagina;
+}
+
+.conteudo-pagina {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    padding: 50px 0;
+    border-radius: $radius-borda;
+    background-color: $cor-branca;
+
+    .container-candidato {
+        font-family: $fonte-principal;
+
+        .titulo-pagina {
+            font-size: $tamanho-fonte-titulo;
+            font-weight: $fonte-negrito;
+            margin-bottom: $margin-embaixo;
+        }
+
+        .rg {
+            margin-bottom: $margin-embaixo;
+            font-size: $tamanho-fonte-terciaria;
+        }
+
+        .imagem-candidato {
+            width: 40%;
+            margin-bottom: $margin-embaixo;
+            border: $border;
+            border-radius: $radius-borda;
+        }
+
+        .nome-candidato {
+            font-size: $tamanho-fonte-secundaria;
+            margin-bottom: $margin-embaixo;
+            font-weight: $fonte-normal;
+        }
+    }
+
+    .container-formulario {
+        .formulario {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .input-numero {
+                margin-bottom: $margin-embaixo;
+                width: 200px;
+                padding: 20px 15px;
+                border: $border;
+                font-family: $fonte-principal;
+                border-radius: $radius-borda;
+                text-align: center;
+                font-size: 16px;
+
+                &::-webkit-inner-spin-button,
+                &::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                &::-webkit-calendar-picker-indicator {
+                    background-color: $cor-fundo-pagina;
+                    color: $cor-principal;
+                    padding: 5px;
+                    border: $border;
+                    border-radius: $radius-borda;
+                    cursor: pointer;
+                    font-size: $tamanho-fonte-terciaria;
+                }
+            }
+
+            .botoes {
+                .botaoForm {
+                    padding: 10px 20px;
+                    margin: 10px;
+                    width: 150px;
+                    border: $border;
+                    border-radius: $radius-borda;
+                    font-family: $fonte-principal;
+                    font-size: $tamanho-fonte-terciaria;
+                    font-weight: $fonte-negrito;
+                    background-color: gainsboro;
+                    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+                }
+
+                #botaoConfirmar:hover {
+                    background-color: green;
+                    color: $cor-branca;
+                }
+
+                #botaoCancelar:hover {
+                    background-color: red;
+                    color: $cor-branca;
+                }
+
+                #botaoBranco:hover {
+                    background-color: $cor-branca;
+                }
+            }
+        }
+    }
+}

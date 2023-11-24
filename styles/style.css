@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #CFCFCF;
+}
+
+.conteudo-pagina {
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  padding: 50px 0;
+  border-radius: 10px;
+  background-color: white;
+}
+.conteudo-pagina .container-candidato {
+  font-family: "Roboto", sans-serif;
+}
+.conteudo-pagina .container-candidato .titulo-pagina {
+  font-size: 50px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+.conteudo-pagina .container-candidato .rg {
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+.conteudo-pagina .container-candidato .imagem-candidato {
+  width: 40%;
+  margin-bottom: 30px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+.conteudo-pagina .container-candidato .nome-candidato {
+  font-size: 30px;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+.conteudo-pagina .container-formulario .formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.conteudo-pagina .container-formulario .formulario .input-numero {
+  margin-bottom: 30px;
+  width: 200px;
+  padding: 20px 15px;
+  border: 1px solid #000000;
+  font-family: "Roboto", sans-serif;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+.conteudo-pagina .container-formulario .formulario .input-numero::-webkit-inner-spin-button, .conteudo-pagina .container-formulario .formulario .input-numero::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.conteudo-pagina .container-formulario .formulario .input-numero::-webkit-calendar-picker-indicator {
+  background-color: #CFCFCF;
+  color: #000000;
+  padding: 5px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.conteudo-pagina .container-formulario .formulario .botoes .botaoForm {
+  padding: 10px 20px;
+  margin: 10px;
+  width: 150px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: gainsboro;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+.conteudo-pagina .container-formulario .formulario .botoes #botaoConfirmar:hover {
+  background-color: green;
+  color: white;
+}
+.conteudo-pagina .container-formulario .formulario .botoes #botaoCancelar:hover {
+  background-color: red;
+  color: white;
+}
+.conteudo-pagina .container-formulario .formulario .botoes #botaoBranco:hover {
+  background-color: white;
+}
+
+/*# sourceMappingURL=style.css.map */
