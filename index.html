@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urna Eletrônica</title>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="icon" type="image/x-icon" href="./assets/candidato.png">
+    <link rel="stylesheet" href="/style.css">
 
 
 </head>
@@ -16,18 +15,20 @@
     <div class="conteudo-pagina">
         <div class="container-candidato">
             <h1 class="titulo-pagina">Urna Eletrônica</h1>
-            <p class="rg" id="campoRg">786.324.323-83</p>
-            <img class="imagem-candidato" src="./assets/candidato.png" alt="imagem do candidato">
+            <img class="imagem-candidato" src="/candidato.png" alt="imagem do candidato">
             <h2 class="nome-candidato">Digite um número válido</h2>
         </div>
 
         <div class="container-formulario">
-            <form action="http://localhost:3000/voto" method="POST" class="formulario">
+            <div class="campos-formulario-sem-botoes">
+            <form action="" method="POST" class="formulario" id="meuFormulario">
                 <input type="number" class="input-numero" placeholder="Número do Candidato" required min="0"
                     name="nmNumero" list="opcoesDatalist">
+                <input type="text" class="rg" id="campoRg" placeholder="Digite seu RG" name="nmRg">
 
                 <datalist id="opcoesDatalist">
                 </datalist>
+            </div>
 
                 <div class="botoes">
                     <input type="submit" id="botaoConfirmar" value="Confirmar" class="botaoForm">
@@ -35,13 +36,15 @@
                     <input type="button" id="botaoBranco" value="Branco" class="botaoForm">
                 </div>
 
+                <div class="statusVoto"></div>
+
             </form>
         </div>
 
 
     </div>
-    <script src="./server.js"></script>
-    <script src="./index.js"></script>
+    <script src="/server.js"></script>
+    <script src="/index.js"></script>
 </body>
 
 </html>

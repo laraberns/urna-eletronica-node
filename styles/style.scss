@@ -70,14 +70,16 @@ body {
             flex-direction: column;
             align-items: center;
 
-            .input-numero {
+          
+
+            .input-numero,
+            .rg {
                 margin-bottom: $margin-embaixo;
                 width: 200px;
                 padding: 20px 15px;
                 border: $border;
                 font-family: $fonte-principal;
                 border-radius: $radius-borda;
-                text-align: center;
                 font-size: 16px;
 
                 &::-webkit-inner-spin-button,
@@ -96,35 +98,48 @@ body {
                     font-size: $tamanho-fonte-terciaria;
                 }
             }
+        }
 
-            .botoes {
-                .botaoForm {
-                    padding: 10px 20px;
-                    margin: 10px;
-                    width: 150px;
-                    border: $border;
-                    border-radius: $radius-borda;
-                    font-family: $fonte-principal;
-                    font-size: $tamanho-fonte-terciaria;
-                    font-weight: $fonte-negrito;
-                    background-color: gainsboro;
-                    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
-                }
 
-                #botaoConfirmar:hover {
-                    background-color: green;
-                    color: $cor-branca;
-                }
+        .botoes {
+            .botaoForm {
+                padding: 10px 20px;
+                margin: 10px;
+                width: 150px;
+                border: $border;
+                border-radius: $radius-borda;
+                font-family: $fonte-principal;
+                font-size: $tamanho-fonte-terciaria;
+                font-weight: $fonte-negrito;
+                background-color: gainsboro;
+                box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+            }
 
-                #botaoCancelar:hover {
-                    background-color: red;
-                    color: $cor-branca;
-                }
+            #botaoConfirmar:hover {
+                background-color: green;
+                color: $cor-branca;
+            }
 
-                #botaoBranco:hover {
-                    background-color: $cor-branca;
-                }
+            #botaoCancelar:hover {
+                background-color: red;
+                color: $cor-branca;
+            }
+
+            #botaoBranco:hover {
+                background-color: $cor-branca;
             }
         }
+
+        .statusVoto {
+            font-size: $tamanho-fonte-secundaria;
+            margin-bottom: $margin-embaixo;
+            font-family: $fonte-principal;
+        }
     }
+}
+
+
+.destacado-erro{
+    color: red;
+    font-weight: 700;
 }

@@ -31,7 +31,7 @@
 - When the user enters a candidate number, read positions 1, 2, 3, and load them into the fields displayed on the screen. 
 
 
-## FN02. Vote Registration
+## FN02. Vote Registration ✅
 ---
 1. Create a new endpoint/route (`[POST]/voto`) to register/save votes. This endpoint should receive form data in the request body. Each new vote should be recorded in a file named `votacao.csv` with the following format: 
 (RG, candidateNumber, voteTimestamp)
