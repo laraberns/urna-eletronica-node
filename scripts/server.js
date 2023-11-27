@@ -49,7 +49,7 @@ app.post("/voto", function (req, resp) {
     if (!erro) {
         resp.json({
             "Status": "200",
-            "Mensagem": "Voto Registrado Com sucesso"
+            "Mensagem": "Voto registrado com sucesso"
         })
     } else {
         resp.json({
