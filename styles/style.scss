@@ -33,6 +33,7 @@ body {
 .conteudo-pagina {
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     padding: 50px 0;
+    margin: 20px;
     border-radius: $radius-borda;
     background-color: $cor-branca;
 
@@ -42,6 +43,7 @@ body {
         .titulo-pagina {
             font-size: $tamanho-fonte-titulo;
             font-weight: $fonte-negrito;
+            margin: 0 10px;
             margin-bottom: $margin-embaixo;
         }
 
@@ -110,20 +112,25 @@ body {
                 font-weight: $fonte-negrito;
                 background-color: gainsboro;
                 box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+                transition: background-color 0.3s, box-shadow 0.3s;
             }
 
             #botaoConfirmar:hover {
                 background-color: green;
                 color: $cor-branca;
+                box-shadow: rgba(0, 128, 0, 0.2) 0px 0px 10px 5px;
             }
 
             #botaoCancelar:hover {
                 background-color: red;
                 color: $cor-branca;
+                box-shadow: rgba(255, 0, 0, 0.2) 0px 0px 10px 5px;
             }
 
             #botaoBranco:hover {
                 background-color: $cor-branca;
+                       box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 2px;
+                       color: $cor-principal;
             }
         }
     }
