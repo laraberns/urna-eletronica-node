@@ -74,14 +74,17 @@ app.get("/apuracao", async function lerArquivo(req, resp) {
         if (valores.length >= 3) {
             numeroDosCandidatosCadaVoto.push(valores[1]);
         }
-    });
-
-    // Responder com o array de numeroDosCandidatosCadaVoto em formato JSON
-    resp.json(numeroDosCandidatosCadaVoto);
+    })
 
     //contabilizar votos
     const resultadoContagem = verificarQtdVotosPorCandidato(numeroDosCandidatosCadaVoto)
     contabilizaVotosValidos(resultadoContagem)
+
+    let resultados = await contabilizaVotosValidos(resultadoContagem)
+
+    // Ordenar o array resultados pela segunda coluna de forma decrescente
+    resultados.sort((a, b) => b[1] - a[1]);
+    resp.json(resultados);
 }
 )
 
@@ -98,24 +101,24 @@ function salvarDadosVotacaoCSV(dados) {
 
 app.listen(3000)
 
-function contabilizaVotosValidos(resultadoContagem) {
-    carregarDadosDosCandidatos().then(arrayDosCandidatos => {
-        // Mapear o array de contagem para adicionar nome e URL da foto
-        const resultadoComInfoCandidato = resultadoContagem.map(([numero, qtdVotos]) => {
-            // Encontrar o candidato correspondente no arrayDosCandidatos
-            const candidato = arrayDosCandidatos.find(c => c.numero === numero);
+async function contabilizaVotosValidos(resultadoContagem) {
+    const arrayDosCandidatos = await carregarDadosDosCandidatos();
 
-            // Verificar se o candidato foi encontrado
-            if (candidato) {
-                return [numero, qtdVotos, candidato.nome, candidato.foto];
-            } else {
-                // Se o candidato não foi encontrado, retornar apenas número e quantidade de votos
-                return [numero, qtdVotos, "Candidato inexistente"];
-            }
-        });
+    // Mapear o array de contagem para adicionar nome e URL da foto
+    const resultadoComInfoCandidato = resultadoContagem.map(([numero, qtdVotos]) => {
+        // Encontrar o candidato correspondente no arrayDosCandidatos
+        const candidato = arrayDosCandidatos.find(c => c.numero === numero);
 
-        console.log(resultadoComInfoCandidato);
+        // Verificar se o candidato foi encontrado
+        if (candidato) {
+            return [numero, qtdVotos, candidato.nome, candidato.foto];
+        } else {
+            // Se o candidato não foi encontrado, retornar apenas número e quantidade de votos
+            return [numero, qtdVotos, "Candidato inexistente"];
+        }
     });
+
+    return resultadoComInfoCandidato;
 }
 
 function verificarQtdVotosPorCandidato(numeroDosCandidatosCadaVoto) {

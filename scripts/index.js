@@ -112,8 +112,6 @@ async function postVotacao(numeroVoto) {
     } else {
         statusVoto.classList.add('destacado-erro')
     }
-
-
 }
 
 //CANCELAR - LIMPAR A TELA - BOTAO

@@ -73,7 +73,7 @@ Display the message returned by the endpoint on the screen.
 
 Disable the buttons and fields on the screen during the time the message is being displayed.
 
-## FN03. Vote Counting
+## FN03. Vote Counting ✅
 ---
 
 Create a new endpoint/route ([get]/apuracao) to return the vote count.
