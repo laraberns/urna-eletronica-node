@@ -4,25 +4,21 @@ const nomeCandidato = document.querySelector('.nome-candidato')
 const imagemCandidato = document.querySelector('.imagem-candidato')
 const dataListNumeros = document.getElementById("opcoesDatalist")
 const formulario = document.querySelector('.formulario')
-const conteudoFormularioSemBotoes = document.querySelector('.campos-formulario-sem-botoes')
-const divBotoes = document.querySelector('.botoes')
 const statusVoto = document.querySelector('.statusVoto')
 const botaoCancelar = document.getElementById('botaoCancelar')
 const botaoBranco = document.getElementById('botaoBranco')
-const divInputs = document.querySelector('.inputs')
+const divInfoForm = document.querySelector('.container-formulario')
 
+//CAMPO RG ESCONDIDO POR PADRAO - SO LIBERA COM TIPO != a
 campoRg.style.display = 'none';
 
-// salvar valor do input quando alterado
-let valorInput = null
-
-//zerar dados
+//ZERAR DADOS
 function zerarDados() {
-    nomeCandidato.textContent = "Digite um número válido"
+    nomeCandidato.textContent = "Digite o número do candidato"
     imagemCandidato.src = `../assets/candidato.png`
 }
 
-//fetch da /cargainicial ao ligar a urna
+//FECTH NA /CARGAINICIAL AO LIGAR A URNA - MOSTRAR LISTA NO DATALIST
 async function carregarDadosFetch() {
 
     let resposta = await fetch("http://localhost:3000/cargainicial")
@@ -54,7 +50,7 @@ numeroCandidatoInput.addEventListener('input', async function (event) {
 
     let respostaJson = await resposta.json()
 
-    valorInput = event.target.value;
+    let valorInput = event.target.value;
 
     respostaJson.forEach(element => {
         if (element.numero == valorInput) {
@@ -69,9 +65,9 @@ formulario.addEventListener("submit", (event) => {
     event.preventDefault();
 
     //TRATANDO VOTOS NULOS
-    if(numeroCandidatoInput.value == ""){
+    if (numeroCandidatoInput.value == "") {
         postVotacao("Nulo")
-    }else{
+    } else {
         postVotacao(numeroCandidatoInput.value)
     }
 
@@ -93,20 +89,16 @@ async function postVotacao(numeroVoto) {
 
     const responseData = await response.json();
 
-    //MOSTRANDO MENSAGEM NA TELA DO STATUS
-    divBotoes.style.display = "none"
-    divInputs.style.display = "none"
-    nomeCandidato.style.display = "none"
+    //MOSTRANDO MENSAGEM NA TELA DE ACORDO COM O STATUS
+    divInfoForm.style.display = "none"
     statusVoto.textContent = responseData.Mensagem
 
     if (responseData.Status == 200) {
         setTimeout(() => {
-            divBotoes.style.display = "block"
-            nomeCandidato.style.display = "block"
-            divInputs.style.display = "block"
+            divInfoForm.style.display = "block"
             statusVoto.textContent = ""
             numeroCandidatoInput.value = ""
-           campoRg.value = ""
+            campoRg.value = ""
             zerarDados()
         }, 2000);
     } else {
@@ -122,8 +114,7 @@ botaoCancelar.addEventListener("click", () => {
 
 
 //BRANCO - SALVAR VOTO COMO "BRANCO" - BOTAO
-botaoBranco.addEventListener("click", (event) => {
-    event.preventDefault();
+botaoBranco.addEventListener("click", () => {
     postVotacao("Branco")
 });
 

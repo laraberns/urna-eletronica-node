@@ -1,11 +1,11 @@
 const express = require("express")
 const cors = require("cors")
 const path = require("path")
-const fs = require("fs").promises;
+const fs = require("fs").promises
 
 const app = express()
-
 const carregarDadosDosCandidatos = require("./banco.js")
+const { log } = require("console")
 
 //ERROR LET - SAVE STATUS
 let erro = null
@@ -16,18 +16,21 @@ app.use(express.json())
 app.use(cors())
 
 // Servir arquivos estáticos
-app.use(express.static(path.join(__dirname, '../')));
-app.use(express.static(path.join(__dirname, '../styles')));
-app.use(express.static(path.join(__dirname, '../assets')));
-app.use(express.static(path.join(__dirname, '../scripts')));
+app.use(express.static(path.join(__dirname, '../')))
+app.use(express.static(path.join(__dirname, '../styles')))
+app.use(express.static(path.join(__dirname, '../assets')))
+app.use(express.static(path.join(__dirname, '../scripts')))
 
+
+//RETORNANDO PAGINA NO INDEX.HTML
 app.get("/", function (req, resp) {
-    const indexPath = path.join(__dirname, "../index.html");
-    const conteudoIndex = fs.readFileSync(indexPath, "utf-8");
-    resp.send(conteudoIndex);
-});
+    const indexPath = path.join(__dirname, "../index.html")
+    const conteudoIndex = fs.readFileSync(indexPath, "utf-8")
+    resp.send(conteudoIndex)
+})
 
 
+//REGISTRANDO OS VOTOS
 app.post("/voto", function (req, resp) {
 
     let { nmNumero, nmRg } = req.body
@@ -51,6 +54,18 @@ app.post("/voto", function (req, resp) {
 
 })
 
+//REGISTRANDO OS VOTOS NO ARQUIVO VOTACAO.CSV - SALVANDO ERRO - PARA UTILIZAR STATUS
+function salvarDadosVotacaoCSV(dados) {
+    fs.appendFile("votacao.csv", dados + "\n", (err) => {
+        if (err) {
+            erro = true
+        } else {
+            erro = false
+        }
+    })
+}
+
+//CARGA INICIAL DOS CANDIDATOS
 app.get("/cargainicial", function (req, resp) {
 
     carregarDadosDosCandidatos().then(arrayDosCandidatos => {
@@ -59,20 +74,19 @@ app.get("/cargainicial", function (req, resp) {
 
 })
 
-
+//APURACAO DOS VOTOS - FN03
 app.get("/apuracao", async function lerArquivo(req, resp) {
     const dado = await fs.readFile("votacao.csv", "utf-8")
 
     const linhas = dado.split('\n')
-    const numeroDosCandidatosCadaVoto = [];
+    const numeroDosCandidatosCadaVoto = []
 
     linhas.forEach((linha) => {
-        // Dividir os valores usando vírgulas
-        const valores = linha.split(',');
+        const valores = linha.split(',')
 
         // Certificar-se de que existem pelo menos 3 valores
         if (valores.length >= 3) {
-            numeroDosCandidatosCadaVoto.push(valores[1]);
+            numeroDosCandidatosCadaVoto.push(valores[1])
         }
     })
 
@@ -82,66 +96,57 @@ app.get("/apuracao", async function lerArquivo(req, resp) {
 
     let resultados = await contabilizaVotosValidos(resultadoContagem)
 
-    // Ordenar o array resultados pela segunda coluna de forma decrescente
-    resultados.sort((a, b) => b[1] - a[1]);
-    resp.json(resultados);
+    // Ordenar o array de forma decrescente - QUANTIDADE DE VOTOS - e exibir na tela de /apuracao
+    resultados.sort((a, b) => b[1] - a[1])
+    resp.json(resultados)
 }
 )
 
-
-function salvarDadosVotacaoCSV(dados) {
-    fs.appendFile("votacao.csv", dados + "\n", (err) => {
-        if (err) {
-            erro = true
-        } else {
-            erro = false
-        }
-    });
-}
-
-app.listen(3000)
-
-async function contabilizaVotosValidos(resultadoContagem) {
-    const arrayDosCandidatos = await carregarDadosDosCandidatos();
-
-    // Mapear o array de contagem para adicionar nome e URL da foto
-    const resultadoComInfoCandidato = resultadoContagem.map(([numero, qtdVotos]) => {
-        // Encontrar o candidato correspondente no arrayDosCandidatos
-        const candidato = arrayDosCandidatos.find(c => c.numero === numero);
-
-        // Verificar se o candidato foi encontrado
-        if (candidato) {
-            return [numero, qtdVotos, candidato.nome, candidato.foto];
-        } else {
-            // Se o candidato não foi encontrado, retornar apenas número e quantidade de votos
-            return [numero, qtdVotos, "Candidato inexistente"];
-        }
-    });
-
-    return resultadoComInfoCandidato;
-}
-
+//VERIFICANDO QTD DE VOTOS POR CANDIDATO
 function verificarQtdVotosPorCandidato(numeroDosCandidatosCadaVoto) {
-    const contagem = {};
+    const contagem = {}
 
-    // Iterar sobre o array dinâmico
     numeroDosCandidatosCadaVoto.forEach(numero => {
         // Verificar se o número já existe na contagem
         if (contagem[numero]) {
             // Se existe, incrementar a contagem
-            contagem[numero]++;
+            contagem[numero]++
         } else {
             // Se não existe, iniciar a contagem em 1
-            contagem[numero] = 1;
+            contagem[numero] = 1
         }
-    });
+    })
 
-    // Converter o objeto de contagem em um array de arrays
-    const resultado = Object.entries(contagem).map(([numero, quantidade]) => [numero, quantidade]);
+    // Criar um array de arrays com os resultados - transforma objeto de contagem em matriz (array de arrays)
+    const resultado = []
 
-    return resultado;
+    for (const numero in contagem) {
+        resultado.push([numero, contagem[numero]])
+    }
+
+    return resultado
+}
+
+//PEGANDO DADOS DE NOME E IMG E SALVANDO
+async function contabilizaVotosValidos(resultadoContagem) {
+    const arrayDosCandidatos = await carregarDadosDosCandidatos()
+
+    // Mapear o array de contagem para adicionar nome e URL da foto
+    const resultadoComInfoCandidato = resultadoContagem.map(([numero, qtdVotos]) => {
+        // Encontrar o candidato correspondente no arrayDosCandidatos
+        const candidato = arrayDosCandidatos.find(c => c.numero === numero)
+
+        // Verificar se o candidato foi encontrado
+        if (candidato) {
+            return [numero, qtdVotos, candidato.nome, candidato.foto]
+        } else {
+            // Se o candidato não foi encontrado, retornar apenas número e quantidade de votos
+            return [numero, qtdVotos, "Candidato inexistente"]
+        }
+    })
+
+    return resultadoComInfoCandidato
 }
 
 
-
-
+app.listen(3000)

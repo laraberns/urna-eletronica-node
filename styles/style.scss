@@ -70,8 +70,6 @@ body {
             flex-direction: column;
             align-items: center;
 
-          
-
             .input-numero,
             .rg {
                 margin-bottom: $margin-embaixo;
@@ -99,7 +97,6 @@ body {
                 }
             }
         }
-
 
         .botoes {
             .botaoForm {
@@ -129,15 +126,14 @@ body {
                 background-color: $cor-branca;
             }
         }
-
-        .statusVoto {
-            font-size: $tamanho-fonte-secundaria;
-            margin-bottom: $margin-embaixo;
-            font-family: $fonte-principal;
-        }
     }
 }
 
+.statusVoto {
+    font-size: $tamanho-fonte-secundaria;
+    margin-bottom: $margin-embaixo;
+    font-family: $fonte-principal;
+}
 
 .destacado-erro{
     color: red;

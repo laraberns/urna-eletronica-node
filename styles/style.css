@@ -98,7 +98,8 @@ body {
 .conteudo-pagina .container-formulario .botoes #botaoBranco:hover {
   background-color: white;
 }
-.conteudo-pagina .container-formulario .statusVoto {
+
+.statusVoto {
   font-size: 30px;
   margin-bottom: 30px;
   font-family: "Roboto", sans-serif;
