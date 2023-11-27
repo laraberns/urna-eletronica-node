@@ -9,6 +9,11 @@ const botaoCancelar = document.getElementById('botaoCancelar')
 const botaoBranco = document.getElementById('botaoBranco')
 const divInfoForm = document.querySelector('.container-formulario')
 
+
+//SOM DA URNA
+const somUrna = 'assets/Urna.mp3';
+const audio = new Audio(somUrna);
+
 //CAMPO RG ESCONDIDO POR PADRAO - SO LIBERA COM TIPO != a
 campoRg.style.display = 'none';
 
@@ -75,6 +80,14 @@ formulario.addEventListener("submit", (event) => {
 
 //FUNCAO POST
 async function postVotacao(numeroVoto) {
+
+    //SOM DA URNA
+    audio.currentTime = 2;
+    audio.play();
+    setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0; 
+      }, 2000);
 
     const response = await fetch("http://localhost:3000/voto", {
         method: "POST",

@@ -5,7 +5,6 @@ const fs = require("fs").promises
 
 const app = express()
 const carregarDadosDosCandidatos = require("./banco.js")
-const { log } = require("console")
 
 //ERROR LET - SAVE STATUS
 let erro = null
@@ -21,7 +20,6 @@ app.use(express.static(path.join(__dirname, '../styles')))
 app.use(express.static(path.join(__dirname, '../assets')))
 app.use(express.static(path.join(__dirname, '../scripts')))
 
-
 //RETORNANDO PAGINA NO INDEX.HTML
 app.get("/", function (req, resp) {
     const indexPath = path.join(__dirname, "../index.html")
@@ -29,6 +27,14 @@ app.get("/", function (req, resp) {
     resp.send(conteudoIndex)
 })
 
+//CARGA INICIAL DOS CANDIDATOS
+app.get("/cargainicial", function (req, resp) {
+
+    carregarDadosDosCandidatos().then(arrayDosCandidatos => {
+        resp.send(arrayDosCandidatos)
+    })
+
+})
 
 //REGISTRANDO OS VOTOS
 app.post("/voto", function (req, resp) {
@@ -64,15 +70,6 @@ function salvarDadosVotacaoCSV(dados) {
         }
     })
 }
-
-//CARGA INICIAL DOS CANDIDATOS
-app.get("/cargainicial", function (req, resp) {
-
-    carregarDadosDosCandidatos().then(arrayDosCandidatos => {
-        resp.send(arrayDosCandidatos)
-    })
-
-})
 
 //APURACAO DOS VOTOS - FN03
 app.get("/apuracao", async function lerArquivo(req, resp) {
