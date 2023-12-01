@@ -26,7 +26,7 @@ function zerarDados() {
 //FECTH NA /CARGAINICIAL AO LIGAR A URNA - MOSTRAR LISTA NO DATALIST
 async function carregarDadosFetch() {
 
-    let resposta = await fetch("http://localhost:3000/cargainicial")
+    let resposta = await fetch("http://localhost:3005/cargainicial")
 
     let respostaJson = await resposta.json()
 
@@ -51,7 +51,7 @@ numeroCandidatoInput.addEventListener('input', async function (event) {
 
     zerarDados()
 
-    let resposta = await fetch("http://localhost:3000/cargainicial")
+    let resposta = await fetch("http://localhost:3005/cargainicial")
 
     let respostaJson = await resposta.json()
 
@@ -89,7 +89,7 @@ async function postVotacao(numeroVoto) {
         audio.currentTime = 0; 
       }, 2000);
 
-    const response = await fetch("http://localhost:3000/voto", {
+    const response = await fetch("http://localhost:3005/voto", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

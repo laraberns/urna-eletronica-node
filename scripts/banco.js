@@ -1,7 +1,9 @@
 const fs = require("fs/promises")
+const path = require("path");
 
 module.exports = async function lerArquivo() {
-    const dado = await fs.readFile("config.csv", "utf-8")
+    const filePath = path.join(__dirname, "../config.csv");
+    const dado = await fs.readFile(filePath, "utf-8")
     const candidatos = dado.split("\r\n")
     const arrayDosCandidatos = []
 
