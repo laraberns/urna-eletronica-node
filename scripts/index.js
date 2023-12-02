@@ -8,11 +8,63 @@ const statusVoto = document.querySelector('.statusVoto')
 const botaoCancelar = document.getElementById('botaoCancelar')
 const botaoBranco = document.getElementById('botaoBranco')
 const divInfoForm = document.querySelector('.container-formulario')
-
+const botaoLogin = document.getElementById('botaoLogin')
+const conteudoPaginaSemLogin = document.querySelector('.conteudo-pagina')
+const conteudoLogin = document.querySelector('.tela_autenticacao')
 
 //SOM DA URNA
 const somUrna = 'assets/Urna.mp3';
 const audio = new Audio(somUrna);
+
+//LOGIN
+conteudoPaginaSemLogin.style.display = "none"
+
+botaoLogin.addEventListener("click", loginUser)
+
+// Adicione uma variável para rastrear se a mensagem já foi exibida
+let acessoNegadoExibido = false;
+
+async function loginUser() {
+    let cpf = document.getElementById("idCPF").value
+    let senha = document.getElementById("idSenha").value
+
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            "cpf": cpf,
+            "senha": senha
+        })
+    };
+
+    try {
+        let res = await fetch('http://localhost:3005/login', options)
+        let autenticacao = await res.json()
+        sessionStorage.setItem("auth", autenticacao.token)
+
+        if (autenticacao.auth) {
+            conteudoPaginaSemLogin.style.display = "block";
+            conteudoLogin.style.display = "none";
+        }
+
+        if (acessoNegadoExibido) {
+            acessoNegadoExibido = false;
+            conteudoLogin.removeChild(document.querySelector('.acessoNegado'));
+        }
+    } catch (error) {
+        if (error && !acessoNegadoExibido) {
+            let acessoNegado = document.createElement('p');
+            acessoNegado.textContent = "Acesso negado";
+            acessoNegado.classList.add("acessoNegado");
+
+            conteudoLogin.appendChild(acessoNegado);
+
+            acessoNegadoExibido = true;
+        }
+    }
+}
+
+
 
 //CAMPO RG ESCONDIDO POR PADRAO - SO LIBERA COM TIPO != a
 campoRg.style.display = 'none';
@@ -86,8 +138,8 @@ async function postVotacao(numeroVoto) {
     audio.play();
     setTimeout(() => {
         audio.pause();
-        audio.currentTime = 0; 
-      }, 2000);
+        audio.currentTime = 0;
+    }, 2000);
 
     const response = await fetch("http://localhost:3005/voto", {
         method: "POST",
@@ -130,4 +182,5 @@ botaoCancelar.addEventListener("click", () => {
 botaoBranco.addEventListener("click", () => {
     postVotacao("Branco")
 });
+
 
