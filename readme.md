@@ -91,6 +91,48 @@ Create a new frontend project to present the vote count.
 
 The layout/design of this HTML page can be freely defined by the developer.
 
+## FN04. Voter Authentication ✅
+---
+
+1. Create a file named `voters.csv` in the `backend/server` with the following format:
+    ~~~
+    (cpf, password, name)
+    ~~~
+
+2. Create a new endpoint/route (`[post]/login`) to authenticate the voter.
+- In the request body, receive cpf and password:
+  ```json
+  {
+     "cpf": "004.768.212-12",
+     "password": "OnlyIKnow"
+  }
+  ```
+
+- Verify if the password and cpf correspond to any record in the `voters.csv` file.
+- Use JWT to generate an authentication token.
+- If the voter is successfully authenticated, respond with the following JSON:
+  ```json
+  {
+     "auth": true,
+     "name": "Voter's Name",
+     "token": "generated_token"
+  }
+  ```
+
+3. Create a new endpoint/route (`[post]/logout`) to perform the voter's logout.
+- Register the voter's token in a blacklist.
+- Check the blacklist during login procedures.
+
+## FN05. Authentication Screen ✅
+---
+1. Create a voter authentication screen. This screen should be displayed before the Electronic Ballot screen. The screen should consist of the CPF and Password fields and a login button.
+
+- The authentication screen should be created in the same project/HTML as the electronic ballot. Use containers and DOM manipulation to hide the ballot screen while the login screen is visible.
+- On clicking the Login button, make a request to the route (`[post]/login`) with cpf and password in the request body. This request will return an authentication token that should be stored in a session variable (SessionStorage).
+- Refactor the route (`[POST]/vote`), securing it and allowing only authenticated voters to register votes.
+
+
+
 
 
 

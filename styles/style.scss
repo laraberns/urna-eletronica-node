@@ -101,36 +101,31 @@ body {
         }
 
         .botoes {
-            .botaoForm {
-                padding: 10px 20px;
-                margin: 10px;
-                width: 150px;
-                border: $border;
-                border-radius: $radius-borda;
-                font-family: $fonte-principal;
-                font-size: $tamanho-fonte-terciaria;
-                font-weight: $fonte-negrito;
-                background-color: gainsboro;
-                box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
-                transition: background-color 0.3s, box-shadow 0.3s;
-            }
-
-            #botaoConfirmar:hover {
+            #botaoConfirmar {
                 background-color: green;
                 color: $cor-branca;
-                box-shadow: rgba(0, 128, 0, 0.2) 0px 0px 10px 5px;
+
+                &:hover {
+                    box-shadow: rgba(0, 128, 0, 0.2) 0px 0px 10px 5px;
+                }
             }
 
-            #botaoCancelar:hover {
+            #botaoCancelar {
                 background-color: red;
                 color: $cor-branca;
-                box-shadow: rgba(255, 0, 0, 0.2) 0px 0px 10px 5px;
+
+                &:hover {
+                    box-shadow: rgba(255, 0, 0, 0.2) 0px 0px 10px 5px;
+                }
             }
 
-            #botaoBranco:hover {
+            #botaoBranco {
                 background-color: $cor-branca;
-                       box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 2px;
-                       color: $cor-principal;
+                color: $cor-principal;
+
+                &:hover {
+                    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 2px;
+                }
             }
         }
     }
@@ -142,7 +137,49 @@ body {
     font-family: $fonte-principal;
 }
 
-.destacado-erro{
+.destacado-erro {
     color: red;
     font-weight: 700;
+}
+
+.tela_autenticacao {
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    padding: 50px;
+    margin: 20px;
+    border-radius: $radius-borda;
+    background-color: $cor-branca;
+
+    .inputLogin {
+        margin-bottom: $margin-embaixo;
+        width: 200px;
+        padding: 20px 15px;
+        border: $border;
+        font-family: $fonte-principal;
+        border-radius: $radius-borda;
+        font-size: 16px;
+    }
+
+}
+
+.botaoForm {
+    align-self: center;
+    padding: 10px 20px;
+    margin: 10px;
+    width: 150px;
+    border: $border;
+    border-radius: $radius-borda;
+    font-family: $fonte-principal;
+    font-size: $tamanho-fonte-terciaria;
+    font-weight: $fonte-negrito;
+    background-color: gainsboro;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.acessoNegado{
+    font-size: $tamanho-fonte-secundaria;
+    color: #000000;
 }

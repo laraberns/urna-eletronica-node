@@ -77,33 +77,26 @@ body {
   cursor: pointer;
   font-size: 20px;
 }
-.conteudo-pagina .container-formulario .botoes .botaoForm {
-  padding: 10px 20px;
-  margin: 10px;
-  width: 150px;
-  border: 1px solid #000000;
-  border-radius: 10px;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  background-color: gainsboro;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
-  transition: background-color 0.3s, box-shadow 0.3s;
-}
-.conteudo-pagina .container-formulario .botoes #botaoConfirmar:hover {
+.conteudo-pagina .container-formulario .botoes #botaoConfirmar {
   background-color: green;
   color: white;
+}
+.conteudo-pagina .container-formulario .botoes #botaoConfirmar:hover {
   box-shadow: rgba(0, 128, 0, 0.2) 0px 0px 10px 5px;
 }
-.conteudo-pagina .container-formulario .botoes #botaoCancelar:hover {
+.conteudo-pagina .container-formulario .botoes #botaoCancelar {
   background-color: red;
   color: white;
+}
+.conteudo-pagina .container-formulario .botoes #botaoCancelar:hover {
   box-shadow: rgba(255, 0, 0, 0.2) 0px 0px 10px 5px;
 }
-.conteudo-pagina .container-formulario .botoes #botaoBranco:hover {
+.conteudo-pagina .container-formulario .botoes #botaoBranco {
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 2px;
   color: #000000;
+}
+.conteudo-pagina .container-formulario .botoes #botaoBranco:hover {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 2px;
 }
 
 .statusVoto {
@@ -115,6 +108,46 @@ body {
 .destacado-erro {
   color: red;
   font-weight: 700;
+}
+
+.tela_autenticacao {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  padding: 50px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: white;
+}
+.tela_autenticacao .inputLogin {
+  margin-bottom: 30px;
+  width: 200px;
+  padding: 20px 15px;
+  border: 1px solid #000000;
+  font-family: "Roboto", sans-serif;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.botaoForm {
+  align-self: center;
+  padding: 10px 20px;
+  margin: 10px;
+  width: 150px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: gainsboro;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.acessoNegado {
+  font-size: 30px;
+  color: #000000;
 }
 
 /*# sourceMappingURL=style.css.map */
